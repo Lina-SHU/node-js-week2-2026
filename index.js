@@ -157,12 +157,12 @@ function handleUpload(req, res, config) {
   });
 
   form.on('error', (err) => {
+    if (res.headersSent) return;
     console.log(err); // 記錄 log、清理暫存檔、額外監控可以寫在這邊
   });
 
   form.parse(req, (err, fields, files) => {
     if (err) {
-      if (res.headersSent) return;
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: err }));
       return;
