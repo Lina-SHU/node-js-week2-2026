@@ -157,7 +157,6 @@ function handleUpload(req, res, config) {
   });
 
   form.on('error', (err) => {
-    if (res.headersSent) return;
     console.log(err); // 記錄 log、清理暫存檔、額外監控可以寫在這邊
   });
 
